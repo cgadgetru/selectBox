@@ -1,0 +1,13 @@
+<span class="select-box-block">
+    <a class="select-box-control group" href="" ng-class="selectBoxControlClassName" ng-click="toggleList()">
+        <span class="select-box-control-text">{{selectBoxControlValue}}</span>
+        <span class="select-box-control-arrow"></span>
+    </a>
+    <span class="select-box-list" ng-show="listVisibility">
+        <span class="select-box-list-item   group" ng-repeat="item in items" ng-class="item.focus" ng-click="selectItem(item)">
+            <span class="select-box-list-item-text">{{item.name}}</span>
+            <span class="select-box-list-item-checkbox select-box-list-item-checkbox-checked" ng-if="item.checked" ></span>
+            <span class="select-box-list-item-checkbox" ng-if="!item.checked" ></span>
+        </span>
+    </span>
+</span>
