@@ -13,7 +13,6 @@ angular.module('myApp.selectBox', [])
         function keyDownHandler(e){
             e.stopPropagation();
             var $scope = e.data.scope;
-            var element = e.data.element;
             var items = $scope.items;
             var focusIndex = 0;
             if(e.keyCode == 13){
@@ -88,12 +87,10 @@ angular.module('myApp.selectBox', [])
                 $scope.listVisibility = false;
                 $scope.selectBoxControlValue = '';
                 $scope.selectBoxControlClassName = '';
-                angular.element($element).find(".select-box-control").on("focus",function(){
-                    console.log("element focus");
+                angular.element($element).find(".select-box-control").one("focus",function(){
                     angular.element($element).one("keydown",'',{scope:$scope,element:$element},dropDownListHandler)
                 });
-                angular.element($element).find(".select-box-control").on("blur",function(){
-                    console.log("element blur");
+                angular.element($element).find(".select-box-control").one("blur",function(){
                     angular.element($element).off("keydown",'',{scope:$scope,element:$element},dropDownListHandler)
                 });
 
@@ -107,13 +104,11 @@ angular.module('myApp.selectBox', [])
             controller: function ($scope, $element) {
                 $scope.showList = function(){
                     $scope.listVisibility = true;
-                    console.log("element show list");
                     angular.element($element).off("keydown",dropDownListHandler);
                     angular.element($element).on('keydown','',{scope:$scope,element:$element}, keyDownHandler);
                 };
                 $scope.hideList = function(){
                     $scope.listVisibility = false;
-                    console.log("element hide list");
                     angular.element($element).on('keydown','',{scope:$scope,element:$element},dropDownListHandler);
                     angular.element($element).off('keydown',keyDownHandler);
                 };
